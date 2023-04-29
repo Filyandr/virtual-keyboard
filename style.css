@@ -1,0 +1,83 @@
+* {
+    background-color: white;
+    margin: 0 0 20px 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.area {
+    display: block;
+    width: 700px;
+    height: 200px;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444444;
+}
+
+.keyboard {
+    padding: 10px;
+    margin: 0 auto;
+    width: 730px;
+    height: 260px;
+    border: 3px solid #222222;
+    border-radius: 5px;
+}
+
+.keyboard_row {
+    clear: both;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.key{
+    height: 40px;
+    margin-bottom: 8px;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-left: 6px;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: center;
+    color: black;
+    background: white;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.Backspace{
+    width: 100px;
+}
+
+.Tab {
+    width: 54px;
+}
+
+.CapsLock, .Enter,.ShiftLeft, .ShiftRight{
+    width: 93px;
+}
+
+.Space{
+    width: 323px;
+}
+.ControlRight{
+    width: 47px
+}
