@@ -15,7 +15,7 @@ area.className = 'area';
 title.innerHTMl = 'введите текст';
 area.setAttribute('autofocus', '');
 wrapper.append(area);
-// area.readOnly = true;
+area.readOnly = true;
 
 const keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
@@ -247,7 +247,6 @@ function clickShift() {
     event.target.classList.toggle('active');
   });
 }
-
 document.querySelector('.ShiftLeft').addEventListener('click', clickShift());
 
 // Капс
