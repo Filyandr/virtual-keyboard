@@ -1,40 +1,59 @@
 * {
-    background-color: white;
     margin: 0 0 20px 0;
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, serif;
+    background: black;
 }
 
 .wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1200px;
-    background-color: black;
+    width: 950px;
+    height: 600px;
     margin: 0 auto;
+    padding-top: 50px;
+    background: linear-gradient(to top, black, cyan);
+    border-radius:140px;
+    margin-top: 40px;
+}
+
+.title {
+    color: rgb(12, 6, 1);
+    font-weight: 400;
 }
 
 .area {
     display: block;
-    width: 700px;
+    font-family: Georgia, serif;
+    resize: none;
+    width: 600px;
     height: 200px;
     margin: 10px auto 10px;
     padding: 10px;
     font-size: 18px;
-    color: #444444;
+    color: black;
+    border-radius: 20px;
+    border: 2px solid;
+    border-color: rgb(240, 139, 46);
+    outline: none;
 }
 
 .keyboard {
-    padding: 10px;
     margin: 0 auto;
     width: 730px;
     height: 260px;
-    border: 3px solid #222222;
-    border-radius: 5px;
+    border: 2px solid rgb(240, 139, 46);
+    border-radius: 10px;
+    background: white;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
 }
 
 .keyboard_row {
@@ -44,7 +63,7 @@ body {
     margin-bottom: 8px;
 }
 
-.key{
+.key {
     height: 40px;
     margin-bottom: 8px;
     float: left;
@@ -56,11 +75,24 @@ body {
     text-align: center;
     color: black;
     background: white;
-    border: 1px solid #222222;
-    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid rgb(240, 139, 46);
+    border-radius: 12px;
     cursor: pointer;
     user-select: none;
     transition: border-radius 0.3s, background-color 0.3s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.key:hover {
+    background-color: rgb(255, 202, 152);
+}
+
+.key:active {
+    background-color: rgb(255, 147, 47);
+    border-radius: 5px;
+    color: black;
 }
 
 .Backspace{
@@ -80,4 +112,14 @@ body {
 }
 .ControlRight{
     width: 47px
+}
+
+.description {
+    width: 550px;
+    text-align: center;
+    color: rgb(240, 139, 46);
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
 }

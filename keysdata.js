@@ -10,7 +10,7 @@ const keysData = [
         en: '~',
       },
       code: 'Backquote',
-      class: 'key tilda Backquote',
+      class: 'key Backquote tilda',
       caps: { ru: 'Ё', en: '`' },
     },
     {
@@ -50,12 +50,12 @@ const keysData = [
       key: { ru: '=', en: '=' }, shift: { ru: '+', en: '+' }, code: 'Equal', class: 'key Equal', caps: { ru: '=', en: '=' },
     },
     {
-      key: { ru: 'Backspace', en: 'Backspace' }, shift: { ru: 'Backspace', en: 'Backspace' }, code: 'Backspace', class: 'key key_backspace Backspace', noType: true,
+      key: { ru: 'Backspace', en: 'Backspace' }, shift: { ru: 'Backspace', en: 'Backspace' }, code: 'Backspace', class: 'key Backspace key_backspace', noType: true,
     },
   ],
   [ // row 2
     {
-      key: { ru: 'Tab', en: 'Tab' }, shift: { ru: 'Tab', en: 'Tab' }, code: 'Tab', class: 'key key_tab Tab', noType: true,
+      key: { ru: 'Tab', en: 'Tab' }, shift: { ru: 'Tab', en: 'Tab' }, code: 'Tab', class: 'key Tab key_tab', noType: true,
     },
     {
       key: { ru: 'й', en: 'q' }, shift: { ru: 'Й', en: 'Q' }, code: 'KeyQ', class: 'key KeyQ',
@@ -94,10 +94,10 @@ const keysData = [
       key: { ru: 'ъ', en: ']' }, shift: { ru: 'Ъ', en: '}' }, code: 'BracketRight', class: 'key BracketRight', caps: { ru: 'Ъ', en: ']' },
     },
     {
-      key: { ru: '\\', en: '\\' }, shift: { ru: '|', en: '|' }, code: 'Backslash', class: 'key key_backslash Backslash', caps: { ru: '\\', en: '\\' },
+      key: { ru: '\\', en: '\\' }, shift: { ru: '|', en: '|' }, code: 'Backslash', class: 'key Backslash key_backslash', caps: { ru: '\\', en: '\\' },
     },
     {
-      key: { ru: 'Del', en: 'Del' }, shift: { ru: 'Del', en: 'Del' }, code: 'Delete', class: 'key key_del Delete', noType: true,
+      key: { ru: 'Del', en: 'Del' }, shift: { ru: 'Del', en: 'Del' }, code: 'Delete', class: 'key Delete key_del', noType: true,
     },
   ],
   [ // row 3
@@ -138,12 +138,12 @@ const keysData = [
       key: { ru: 'э', en: '\'' }, shift: { ru: 'Э', en: '"' }, code: 'Quote', class: 'key Quote', caps: { ru: 'Э', en: '\'' },
     },
     {
-      key: { ru: 'Enter', en: 'Enter' }, shift: { ru: 'Enter', en: 'Enter' }, code: 'Enter', class: 'key key_enter Enter', noType: true,
+      key: { ru: 'Enter', en: 'Enter' }, shift: { ru: 'Enter', en: 'Enter' }, code: 'Enter', class: 'key Enter key_enter', noType: true,
     },
   ],
   [ // row 4
     {
-      key: { ru: 'Shift', en: 'Shift' }, shift: { ru: 'Shift', en: 'Shift' }, code: 'ShiftLeft', class: 'key key_leftshift ShiftLeft', noType: true,
+      key: { ru: 'Shift', en: 'Shift' }, shift: { ru: 'Shift', en: 'Shift' }, code: 'ShiftLeft', class: 'key ShiftLeft key_leftshift', noType: true,
     },
     {
       key: { ru: 'я', en: 'z' }, shift: { ru: 'Я', en: 'Z' }, code: 'KeyZ', class: 'key KeyZ',
@@ -179,24 +179,24 @@ const keysData = [
       key: { ru: '▲', en: '▲' }, shift: { ru: '▲', en: '▲' }, code: 'ArrowUp', class: 'key ArrowUp',
     },
     {
-      key: { ru: 'Shift', en: 'Shift' }, shift: { ru: 'Shift', en: 'Shift' }, code: 'ShiftRight', class: 'key key_rightshift ShiftRight', noType: true,
+      key: { ru: 'Shift', en: 'Shift' }, shift: { ru: 'Shift', en: 'Shift' }, code: 'ShiftRight', class: 'key ShiftRight key_rightshift', noType: true,
     },
   ],
   [ // row 5
     {
-      key: { ru: 'Ctrl', en: 'Ctrl' }, shift: { ru: 'Ctrl', en: 'Ctrl' }, code: 'ControlLeft', class: 'key key_leftctrl ControlLeft', noType: true,
+      key: { ru: 'Ctrl', en: 'Ctrl' }, shift: { ru: 'Ctrl', en: 'Ctrl' }, code: 'ControlLeft', class: 'key ControlLeft key_leftctrl', noType: true,
     },
     {
-      key: { ru: 'Win', en: 'Win' }, shift: { ru: 'Win', en: 'Win' }, code: 'Win', class: 'key key_win Win', noType: true,
+      key: { ru: 'Win', en: 'Win' }, shift: { ru: 'Win', en: 'Win' }, code: 'Win', class: 'key Win key_win', noType: true,
     },
     {
-      key: { ru: 'Alt', en: 'Alt' }, shift: { ru: 'Alt', en: 'Alt' }, code: 'AltLeft', class: 'key key_leftalt AltLeft', noType: true,
+      key: { ru: 'Alt', en: 'Alt' }, shift: { ru: 'Alt', en: 'Alt' }, code: 'AltLeft', class: 'key AltLeft key_leftalt', noType: true,
     },
     {
-      key: { ru: ' ', en: ' ' }, shift: { ru: ' ', en: ' ' }, code: 'Space', class: 'key key_space Space',
+      key: { ru: ' ', en: ' ' }, shift: { ru: ' ', en: ' ' }, code: 'Space', class: 'key Space key_space',
     },
     {
-      key: { ru: 'Alt', en: 'Alt' }, shift: { ru: 'Alt', en: 'Alt' }, code: 'AltRight', class: 'key key_rightalt AltRight', noType: true,
+      key: { ru: 'Alt', en: 'Alt' }, shift: { ru: 'Alt', en: 'Alt' }, code: 'AltRight', class: 'key AltRight key_rightalt', noType: true,
     },
     {
       key: { ru: '◄', en: '◄' }, shift: { ru: '◄', en: '◄' }, code: 'ArrowLeft', class: 'key ArrowLeft',
@@ -208,7 +208,7 @@ const keysData = [
       key: { ru: '►', en: '►' }, shift: { ru: '►', en: '►' }, code: 'ArrowRight', class: 'key ArrowRight',
     },
     {
-      key: { ru: 'Ctrl', en: 'Ctrl' }, shift: { ru: 'Ctrl', en: 'Ctrl' }, code: 'ControlRight', class: 'key key_rightctrl ControlRight', noType: true,
+      key: { ru: 'Ctrl', en: 'Ctrl' }, shift: { ru: 'Ctrl', en: 'Ctrl' }, code: 'ControlRight', class: 'key ControlRight key_rightctrl', noType: true,
     },
   ],
 ];

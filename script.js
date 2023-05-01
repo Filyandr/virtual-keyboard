@@ -22,7 +22,7 @@ wrapper.append(keyboard);
 
 const description = document.createElement('div');
 description.className = 'description';
-description.innerHTML = 'Клавиатура создана в операционной системе Windows 10. Для переключения языка комбинация: левые shift + alt';
+description.innerHTML = 'Клавиатура создана в операционной системе Windows 10. Комбинация для переключения языка: левые shift + alt';
 wrapper.append(description);
 
 function initKeyboardRow() {
@@ -35,24 +35,10 @@ function initKeyboardRow() {
   }
 }
 
-let currentLang = 'en';
+let currentLang = 'ru';
 
-function initEn() {
-  initKeyboardRow();
-  let out = '';
-  for (let j = 0; j < keysData.length; j += 1) {
-    for (let i = 0; i < keysData[j].length; i += 1) {
-      out = `<button class = '${keysData[j][i].class}' >${keysData[j][i].key.en}</button>`;
-      document.querySelector(`#keyboard_row${j}`).innerHTML += out;
-      currentLang = 'en';
-    }
-  }
-  clickShift();
-}
-
-initEn();
-
-function initRu() {
+// ИНИЦИАЦИЯ КНОПОК КЛАВЫ
+let initKeyboard = function() {
   initKeyboardRow();
   let out = '';
   for (let j = 0; j < keysData.length; j += 1) {
@@ -63,39 +49,73 @@ function initRu() {
     }
   }
 }
+initKeyboard();
 
-// initRu()
+function initEn() {
+
+  for (let j = 0; j < keysData.length; j += 1) {
+    for (let i = 0; i < keysData[j].length; i += 1) {
+      document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].key.en}`;
+    }
+  }
+  currentLang = 'en';
+}
+
+function initRu() {
+
+  for (let j = 0; j < keysData.length; j += 1) {
+    for (let i = 0; i < keysData[j].length; i += 1) {
+      document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].key.ru}`;
+    }
+  }
+  currentLang = 'ru';
+}
 
 function initShiftEn() {
-  initKeyboardRow();
-  let out = '';
   for (let j = 0; j < keysData.length; j += 1) {
     for (let i = 0; i < keysData[j].length; i += 1) {
-      out = `<button class = '${keysData[j][i].class}' >${keysData[j][i].shift.en}</button>`;
-      document.querySelector(`#keyboard_row${j}`).innerHTML += out;
-      currentLang = 'en';
+      document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].shift.en}`;
     }
   }
-  clickShift();
+  currentLang = 'en';
 }
-
-// initShiftEn();
 
 function initShiftRu() {
-  initKeyboardRow();
-  let out = '';
   for (let j = 0; j < keysData.length; j += 1) {
     for (let i = 0; i < keysData[j].length; i += 1) {
-      out = `<button class = '${keysData[j][i].class}' >${keysData[j][i].shift.ru}</button>`;
-      document.querySelector(`#keyboard_row${j}`).innerHTML += out;
-      currentLang = 'ru';
+      document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].shift.ru}`;
     }
   }
+  currentLang = 'ru';
 }
 
-// initShiftRu();
+function initCapsEn() {
+  for (let j = 0; j < keysData.length; j += 1) {
+    for (let i = 0; i < keysData[j].length; i += 1) {
+      if (keysData[j][i].caps) {
+        document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].caps.en}`;
+      } else {
+        document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].shift.en}`;
+    }
+  }
+  }
+  currentLang = 'en';
+}
 
+function initCapsRu() {
+  for (let j = 0; j < keysData.length; j += 1) {
+    for (let i = 0; i < keysData[j].length; i += 1) {
+      if (keysData[j][i].caps) {
+        document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].caps.ru}`;
+      } else {
+        document.querySelector(`.${keysData[j][i].code}`).innerHTML = `${keysData[j][i].shift.ru}`;
+    }
+  }
+  }
+  currentLang = 'ru';
+}
 
+//выводим символ при клике мышкой
 const allButtons = document.querySelectorAll('.key');
 allButtons.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
@@ -104,6 +124,47 @@ allButtons.forEach((item) => {
     }
   })
 });
+
+// function handlerKeyDown(event) {
+//   (const button of allButtons) {
+//     if (button.classList.contains('active')) {
+//       button.classList.remove('active');
+//     }
+//   } else if
+// }
+
+// keyboard.addEventListener("mousedown", keyOn);
+// keyboard.addEventListener("keydown", function(event) {
+//   console.log();
+// });
+
+// function keyOn(event) {
+//   if ((event.target.classList.contains("key"))) {
+//     event.target.classList.add("active");
+//     console.log(event.target);
+//   }
+// }
+
+// function keyOff(event) {
+//   // if (event.code.classList.contains("key")) {
+//     // event.target.classList.add("active");
+
+//     console.log(event);
+//   // }
+// }
+
+// function toggleActive(event) {
+//   event.classList.toggle('active');
+// }
+// // вешаем свойство activ при вводе с клавы
+//   document.addEventListener('keydown', (event) => {
+//     toggleActive();
+//     console.log(event.code);
+//   })
+//   document.addEventListener('click', (event) => {
+//     // console.log(event.target.className.split(" ")[1]);
+//   })
+
 
 
 // смена языка
@@ -121,7 +182,10 @@ document.addEventListener('keydown', function(event) {
 // меняем клаву при keydown shift
 let shiftKeyOn = false;
 document.addEventListener('keydown', function(event) {
-  if (event.shiftKey) {
+  if (event.code === 'ShiftLeft') {
+    if (shiftClickOn === true) {
+      shiftClickOn = false;
+    } else {
     shiftKeyOn = true;
     if (currentLang === 'ru') {
       initShiftRu();
@@ -129,10 +193,12 @@ document.addEventListener('keydown', function(event) {
       initShiftEn();
     }
   }
+  }
 })
+
 // меняем клаву при keyup shift
 document.addEventListener('keyup', function(event) {
-    if (event.shiftKey === false) {
+    if (event.code === 'ShiftLeft') {
       shiftKeyOn = false;
       if (currentLang === 'ru') {
         initRu();
@@ -142,39 +208,65 @@ document.addEventListener('keyup', function(event) {
     }
 })
 
-
-
 // меняем клаву при клике на shift
-let onShift = false;
+let shiftClickOn = false;
 let shiftClickToggle = function() {
-  console.log('her1');
-  if (onShift === false) {
-    console.log('xer2')
+  if (shiftClickOn === false) {
     if (currentLang === 'en') {
       initShiftEn();
     } else if (currentLang === 'ru') {
       initShiftRu();
     }
-    onShift = true;
+    shiftClickOn = true;
+    // console.log(shiftClickOn);
 
-  } else if (onShift === true) {
-    console.log('хер3');
+  } else if (shiftClickOn === true) {
     if (currentLang === 'en') {
       initEn();
     } else if (currentLang === 'ru') {
       initRu();
     }
-    onShift = false;
+    shiftClickOn = false;
+
   }
 }
+
 function clickShift() {
   document.querySelector('.ShiftLeft').addEventListener('click', function(event) {
-  // console.log(event);
   shiftClickToggle();
-
 })
 }
-// повесить событие на удержание любого шифта, должна быть переменная, нажат ли шифт, если да заменяем клавиатуру при нажатом шифте и настраиваем ввод в текстарею соответствующим символом
+
+document.querySelector('.ShiftLeft').addEventListener('click', clickShift());
+
+// KAPSUEM
+let capsOn = false;
+function toggleCapsLock() {
+  if (capsOn === true) {
+    capsOn = false;
+    if (currentLang === 'ru') {
+      initRu();
+    } else if (currentLang === 'en') {
+      initEn();
+    }
+  } else {
+  capsOn = true;
+  if (currentLang === 'ru') {
+    initCapsRu();
+  } else if (currentLang === 'en') {
+    initCapsEn();
+  }
+}
+}
+
+document.addEventListener('keyup', function(event) {
+  if (event.code === 'CapsLock') {
+    toggleCapsLock();
+}})
+
+document.querySelector('.CapsLock').addEventListener('click', function(event) {
+    toggleCapsLock();
+});
 
 // ищем по объекту совпадения по event.code (ex. keyZ) и в зависимости от текущей раскладки выводим символ
 document.addEventListener('keydown', (event) => {
@@ -182,68 +274,60 @@ document.addEventListener('keydown', (event) => {
     for (let i = 0; i < keysData[j].length; i += 1) {
       if (keysData[j][i].code == event.code) {
         if (!('noType' in keysData[j][i])) {
+          event.preventDefault();
+
           if (currentLang === 'ru') {
-            if (shiftKeyOn === false) {
-              area.value += keysData[j][i].key.ru;
+            if (shiftKeyOn === true || shiftClickOn === true) {
+              if  (capsOn === true) {
+                if ((keysData[j][i].caps)) {
+                  area.value += keysData[j][i].shift.ru
+                } else {
+                  area.value += keysData[j][i].key.ru
+                }
+              } else {
+                area.value += keysData[j][i].shift.ru;
+              }
+
             } else {
-              area.value += keysData[j][i].shift.ru;
+              if (capsOn === true) {
+                if (keysData[j][i].caps) {
+                area.value += keysData[j][i].caps.ru;
+                } else {
+                  area.value += keysData[j][i].shift.ru;
+                }
+              } else {
+                area.value += keysData[j][i].key.ru;
+              }
             }
-          } else if (shiftKeyOn === false) {
-            area.value += keysData[j][i].key.en;
-          } else {
-            area.value += keysData[j][i].shift.en;
-          }
+
+          } else if (currentLang === 'en') {
+            if (shiftKeyOn === true || shiftClickOn === true) {
+              if  (capsOn === true) {
+                if ((keysData[j][i].caps)) {
+                  area.value += keysData[j][i].shift.en
+                } else {
+                  area.value += keysData[j][i].key.en
+                }
+              } else {
+                area.value += keysData[j][i].shift.en;
+              }
+
+            } else {
+              if (capsOn === true) {
+                if (keysData[j][i].caps) {
+                area.value += keysData[j][i].caps.en;
+                } else {
+                  area.value += keysData[j][i].shift.en;
+                }
+              } else {
+                area.value += keysData[j][i].key.en;
+              }
+            }
         }
+      }
       }
     }
   }
 })
 
 
-
-  // console.log(keysData.find(item => item.code == event.code));
-  // area.value += event.code
-  // event.preventDefault();
-  // console.log(event.code);
-    // for (let j = 0; j < keysData.length; j += 1) {
-    //   for (let i = 0; i < keysData[j].length; i += 1) {
-
-
-      // event.code
-
-  // for (let j = 0; j < keysData.length; j += 1) {
-  //   for (let i = 0; i < keysData[j].length; i += 1) {
-  //     if (event.key == `${keysData[j][i].key.ru}` ||
-  //           event.key == `${keysData[j][i].key.en}` ||
-  //           event.key == `${keysData[j][i].shift.ru}` ||
-  //           event.key == `${keysData[j][i].shift.en}`) {
-  //       if ('noType' in keysData[j][i]) {
-  //         area.value += '';
-  //         // event.preventDefault();
-  //       } else {
-  //         area.value += `${event.key}`;
-  //         // event.preventDefault();
-  //       }
-  //     }
-  //   }
-  // }
-// });
-
-
-// backspace functional
-// function backSpace() {
-//   let bckspc = String(area.value);
-//   bckspc = bckspc.slice(0, 1);
-//   area.value = bckspc;
-//   if (document.querySelector("textarea").selectionStart === 0) return;
-// }
-
-// keyboard.addEventListener('mousedown', (event) => {
-//   if (event.target && event.target.textContent == 'Backspace'){
-//     backSpace();
-//   }
-// })
-// const buttonBackspace = document.querySelector('.Backspace');
-// buttonBackspace.addEventListener('mousedown', function(event) {
-//   backSpace();
-// })
