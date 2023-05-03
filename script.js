@@ -13,7 +13,6 @@ wrapper.append(title);
 const area = document.createElement('textarea');
 area.className = 'area';
 title.innerHTMl = 'введите текст';
-// area.setAttribute('autofocus', '');
 wrapper.append(area);
 
 const keyboard = document.createElement('div');
@@ -34,6 +33,8 @@ function initKeyboardRow() {
     keyboard.appendChild(keyboardRow);
   }
 }
+
+
 
 // localstorage проверка языка
 let currentLang = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'ru';
@@ -141,14 +142,12 @@ function Backspace() {
   let backSpace = text.slice(0, currentPos - 1) + text.slice(currentPos);
   textarea.value = backSpace;
   resetCursor(textarea, currentPos - 1);
-  audio.play();
 }
 
 function Other() {
   let textarea = document.querySelector(".area");
   let currentPos = getCaret(area);
   resetCursor(textarea, currentPos);
-  audio.play();
 }
 
 function OtherInput(letter) {
@@ -159,7 +158,6 @@ function OtherInput(letter) {
     text.substr(0, currentPos) + letter + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function Delete() {
@@ -169,7 +167,6 @@ function Delete() {
   let Del = text.substr(0, currentPos) + text.substr(currentPos + 1, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos);
-  audio.play();
 }
 
 function ArrowUp() {
@@ -179,7 +176,6 @@ function ArrowUp() {
   let Del = text.substr(0, currentPos) + "▲" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function ArrowLeft() {
@@ -189,7 +185,6 @@ function ArrowLeft() {
   let Del = text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function ArrowDown() {
@@ -199,7 +194,6 @@ function ArrowDown() {
   let Del = text.substr(0, currentPos) + "▼" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function ArrowRight() {
@@ -209,7 +203,6 @@ function ArrowRight() {
   let Del = text.substr(0, currentPos) + "►" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function Enter() {
@@ -219,7 +212,6 @@ function Enter() {
   let Del = text.substr(0, currentPos) + "\n" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function Space() {
@@ -230,7 +222,6 @@ function Space() {
     text.substr(0, currentPos) + " " + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
-  audio.play();
 }
 
 function Tab() {
@@ -240,15 +231,7 @@ function Tab() {
   let Del = text.substr(0, currentPos) + "    " + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 4);
-  audio.play();
 }
-
-// звук клика
-const audio = document.createElement("audio");
-audio.classList.add('audio')
-audio.src = "../assets/audio.mp3";
-audio.type = "audio/mpeg";
-document.body.appendChild(audio);
 
 // вывод символа при клике на виртуальную клавиатуру
 const allButtons = document.querySelectorAll('.key');
@@ -320,7 +303,6 @@ function toggleCtrlLock() {
   } else {
     ctrlOn = true;
   }
-  audio.play();
 }
 
 document.querySelector('.AltLeft').addEventListener('click', (event) => {
@@ -356,7 +338,6 @@ document.addEventListener('keydown', (event) => {
       }
     }
   }
-  audio.play();
 });
 
 // меняем клавиатуру при keyup shift
@@ -388,7 +369,6 @@ const shiftClickToggle = () => {
     }
     shiftClickOn = false;
   }
-  audio.play();
 };
 
 function clickShift() {
@@ -422,14 +402,12 @@ function toggleCapsLock() {
 document.addEventListener('keyup', (event) => {
   if (event.code === 'CapsLock') {
     toggleCapsLock();
-    audio.play();
   }
 });
 
 document.querySelector('.CapsLock').addEventListener('click', (event) => {
   toggleCapsLock();
   event.target.classList.toggle('active');
-  audio.play();
 });
 
 // ищем по объекту совпадения event.code (ex. keyZ), вывод символа в зависимости от раскладки
