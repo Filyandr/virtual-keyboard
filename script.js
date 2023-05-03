@@ -238,8 +238,7 @@ const allButtons = document.querySelectorAll('.key');
 allButtons.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
     if (event.target.textContent.length < 2 && event.target.textContent !== ' ') {
-      area.value += `${event.target.textContent}`;
-      Other();
+      OtherInput(event.target.textContent);
     } else {
        if  (item.className.split(' ')[1] === 'Backspace') {
         Backspace();
