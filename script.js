@@ -266,7 +266,7 @@ allButtons.forEach((item) => {
         Space();
       }
     }
-    // audio.play();
+    audio.play();
   })
 });
 
