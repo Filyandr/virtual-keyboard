@@ -13,9 +13,8 @@ wrapper.append(title);
 const area = document.createElement('textarea');
 area.className = 'area';
 title.innerHTMl = 'введите текст';
-area.setAttribute('autofocus', '');
+// area.setAttribute('autofocus', '');
 wrapper.append(area);
-area.readOnly = true;
 
 const keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
@@ -120,44 +119,166 @@ function initCapsRu() {
   localStorage.setItem('lang', 'ru');
 }
 
-// возврат позиции курсора - недоработан
+// каретка
 function getCaret(el) {
-  el.focus();
-  if (el.selectionStart) {
-    return el.selectionStart;
-  } if (document.selection) {
-    const r = document.selection.createRange();
-    if (r == null) {
-      return 0;
-    }
-    const re = el.createTextRange();
-    const rc = re.duplicate();
-    re.moveToBookmark(r.getBookmark());
-    rc.setEndPoint('EndToStart', re);
-
-    return rc.text.length;
-  }
-  return 0;
+  return el.selectionStart ?? el.createTextRange()?.text?.length ?? 0;
 }
 
-// выводим символ при клике мышкой
-let tempCaret = 0;
+function resetCursor(txtElement, currentPos) {
+  if (txtElement.setSelectionRange) {
+    txtElement.focus();
+    txtElement.setSelectionRange(currentPos, currentPos);
+  } else if (txtElement.createTextRange) {
+    txtElement.createTextRange()?.moveStart("character", currentPos)?.select();
+  }
+}
 
-area.addEventListener('blur', () => {
-  tempCaret = getCaret(area);
-});
+// функциональные кнопки
+function Backspace() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(area);
+  let text = textarea.value;
+  let backSpace = text.slice(0, currentPos - 1) + text.slice(currentPos);
+  textarea.value = backSpace;
+  resetCursor(textarea, currentPos - 1);
+  audio.play();
+}
 
+function Other() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(area);
+  resetCursor(textarea, currentPos);
+  audio.play();
+}
+
+function OtherInput(letter) {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + letter + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function Delete() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + text.substr(currentPos + 1, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos);
+  audio.play();
+}
+
+function ArrowUp() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "▲" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function ArrowLeft() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function ArrowDown() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "▼" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function ArrowRight() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "►" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function Enter() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "\n" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function Space() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + " " + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+  audio.play();
+}
+
+function Tab() {
+  let textarea = document.querySelector(".area");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + "    " + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 4);
+  audio.play();
+}
+
+// звук клика
+const audio = document.createElement("audio");
+audio.classList.add('audio')
+audio.src = "../assets/audio.mp3";
+audio.type = "audio/mpeg";
+document.body.appendChild(audio);
+
+// вывод символа при клике на виртуальную клавиатуру
 const allButtons = document.querySelectorAll('.key');
 allButtons.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
-    const currentCaret = tempCaret;
-    if (event.target.textContent.length < 3) {
-      const leftPart = area.value.substring(0, currentCaret);
-      const rightPart = area.value.substring(currentCaret);
-      area.value = leftPart + event.target.textContent + rightPart;
-      tempCaret = currentCaret + 1;
+    if (event.target.textContent.length < 2 && event.target.textContent !== ' ') {
+      area.value += `${event.target.textContent}`;
+      Other();
+    } else {
+       if  (item.className.split(' ')[1] === 'Backspace') {
+        Backspace();
+      } else if (item.className.split(' ')[1] === 'Delete') {
+        Delete();
+      } else if (item.className.split(' ')[1] === 'ArrowUp') {
+        ArrowUp();
+      } else if (item.className.split(' ')[1] === 'ArrowLeft') {
+        ArrowLeft();
+      } else if (item.className.split(' ')[1] === 'ArrowDown') {
+        ArrowDownv();
+      } else if (item.className.split(' ')[1] === 'ArrowRight') {
+        ArrowRight();
+      } else if (item.className.split(' ')[1] === 'Enter') {
+        Enter();
+      } else if (item.className.split(' ')[1] === 'Tab') {
+        Tab();
+      } else if (item.className.split(' ')[1] === 'Space') {
+        Space();
+      }
     }
-  });
+  })
 });
 
 // добавляем класс актив при нажатии
@@ -192,6 +313,33 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+let ctrlOn = false;
+function toggleCtrlLock() {
+  if (ctrlOn === true) {
+    ctrlOn = false;
+  } else {
+    ctrlOn = true;
+  }
+  audio.play();
+}
+
+document.querySelector('.AltLeft').addEventListener('click', (event) => {
+  if (ctrlOn === true) {
+    if (currentLang === 'en') {
+      initRu();
+    } else if (currentLang === 'ru') {
+      initEn();
+    }
+    toggleCtrlLock()
+    document.querySelector('.ControlLeft').classList.toggle('active');
+  }
+});
+
+document.querySelector('.ControlLeft').addEventListener('click', (event) => {
+  toggleCtrlLock();
+  event.target.classList.toggle('active');
+});
+
 // меняем клавиатуру при keydown shift
 let shiftKeyOn = false;
 let shiftClickOn = false;
@@ -208,6 +356,7 @@ document.addEventListener('keydown', (event) => {
       }
     }
   }
+  audio.play();
 });
 
 // меняем клавиатуру при keyup shift
@@ -239,6 +388,7 @@ const shiftClickToggle = () => {
     }
     shiftClickOn = false;
   }
+  audio.play();
 };
 
 function clickShift() {
@@ -272,12 +422,14 @@ function toggleCapsLock() {
 document.addEventListener('keyup', (event) => {
   if (event.code === 'CapsLock') {
     toggleCapsLock();
+    audio.play();
   }
 });
 
 document.querySelector('.CapsLock').addEventListener('click', (event) => {
   toggleCapsLock();
   event.target.classList.toggle('active');
+  audio.play();
 });
 
 // ищем по объекту совпадения event.code (ex. keyZ), вывод символа в зависимости от раскладки
@@ -291,42 +443,49 @@ document.addEventListener('keydown', (event) => {
             if (shiftKeyOn === true || shiftClickOn === true) {
               if (capsOn === true) {
                 if ((keysData[j][i].caps)) {
-                  area.value += keysData[j][i].shift.ru;
+                  OtherInput(keysData[j][i].shift.ru);
                 } else {
-                  area.value += keysData[j][i].key.ru;
+                  OtherInput(keysData[j][i].key.ru);
                 }
               } else {
-                area.value += keysData[j][i].shift.ru;
+                OtherInput(keysData[j][i].shift.ru);
               }
             } else if (capsOn === true) {
               if (keysData[j][i].caps) {
-                area.value += keysData[j][i].caps.ru;
+                OtherInput(keysData[j][i].caps.ru);
               } else {
-                area.value += keysData[j][i].shift.ru;
+                OtherInput(keysData[j][i].shift.ru);
               }
             } else {
-              area.value += keysData[j][i].key.ru;
+              OtherInput(keysData[j][i].key.ru);
             }
           } else if (currentLang === 'en') {
             if (shiftKeyOn === true || shiftClickOn === true) {
               if (capsOn === true) {
                 if ((keysData[j][i].caps)) {
-                  area.value += keysData[j][i].shift.en;
+                  OtherInput(keysData[j][i].shift.en);
                 } else {
-                  area.value += keysData[j][i].key.en;
+                  OtherInput(keysData[j][i].key.en);
                 }
               } else {
-                area.value += keysData[j][i].shift.en;
+                OtherInput(keysData[j][i].shift.en);
               }
             } else if (capsOn === true) {
               if (keysData[j][i].caps) {
-                area.value += keysData[j][i].caps.en;
+                OtherInput(keysData[j][i].caps.en);
               } else {
-                area.value += keysData[j][i].shift.en;
+                OtherInput([j][i].shift.en);
               }
             } else {
-              area.value += keysData[j][i].key.en;
+              OtherInput(keysData[j][i].key.en);
             }
+          }
+        } else {
+          if (event.code === 'Tab') {
+            Tab();
+            preventDefault();
+          } else if (event.code === 'Del') {
+            Del();
           }
         }
       }
