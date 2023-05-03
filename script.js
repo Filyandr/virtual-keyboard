@@ -452,7 +452,7 @@ document.addEventListener('keydown', (event) => {
               if (keysData[j][i].caps) {
                 OtherInput(keysData[j][i].caps.en);
               } else {
-                OtherInput([j][i].shift.en);
+                OtherInput(keysData[j][i].shift.en);
               }
             } else {
               OtherInput(keysData[j][i].key.en);
@@ -460,8 +460,8 @@ document.addEventListener('keydown', (event) => {
           }
         } else {
           if (event.code === 'Tab') {
+            event.preventDefault();
             Tab();
-            preventDefault();
           } else if (event.code === 'Del') {
             Del();
           }
