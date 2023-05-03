@@ -7,7 +7,7 @@ document.body.append(wrapper);
 
 const title = document.createElement('h1');
 title.className = 'title';
-title.innerHTML = 'RSS Виртуальная клавиатура';
+title.innerHTML = 'Виртуальная клавиатура';
 wrapper.append(title);
 
 const area = document.createElement('textarea');
@@ -37,7 +37,7 @@ function initKeyboardRow() {
 // звук клика
 const audio = document.createElement("audio");
 audio.classList.add('audio')
-audio.src = "../assets/audio.mp3";
+audio.src = "./assets/audio.mp3";
 audio.type = "audio/mpeg";
 document.body.appendChild(audio);
 
@@ -266,7 +266,7 @@ allButtons.forEach((item) => {
         Space();
       }
     }
-    audio.play();
+    // audio.play();
   })
 });
 
