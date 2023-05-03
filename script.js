@@ -35,11 +35,11 @@ function initKeyboardRow() {
 }
 
 // звук клика
-// const audio = document.createElement("audio");
-// audio.classList.add('audio')
-// audio.src = "../assets/audio.mp3";
-// audio.type = "audio/mpeg";
-// document.body.appendChild(audio);
+const audio = document.createElement("audio");
+audio.classList.add('audio')
+audio.src = "./assets/audio.mp3";
+audio.type = "audio/mpeg";
+document.body.appendChild(audio);
 
 
 // localstorage проверка языка
@@ -422,7 +422,7 @@ document.addEventListener('keydown', (event) => {
     for (let i = 0; i < keysData[j].length; i += 1) {
       if (keysData[j][i].code === event.code) {
         if (!('noType' in keysData[j][i])) {
-          // audio.play();
+          audio.play();
           event.preventDefault();
           if (currentLang === 'ru') {
             if (shiftKeyOn === true || shiftClickOn === true) {
@@ -473,7 +473,7 @@ document.addEventListener('keydown', (event) => {
             Del();
           }
         }
-        // audio.play();
+        audio.play();
       }
     }
   }
