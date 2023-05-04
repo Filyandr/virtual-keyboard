@@ -243,7 +243,6 @@ function Tab() {
 const allButtons = document.querySelectorAll('.key');
 allButtons.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
-    console.log(event);
     if (event.target.textContent.length < 2 && event.target.textContent !== ' ') {
       OtherInput(event.target.textContent);
     } else {
