@@ -190,7 +190,7 @@ function ArrowLeft() {
   let text = textarea.value;
   let Del = text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
   textarea.value = Del;
-  resetCursor(textarea, currentPos + 1);
+  resetCursor(textarea, currentPos - 1);
 }
 
 function ArrowDown() {
@@ -243,6 +243,7 @@ function Tab() {
 const allButtons = document.querySelectorAll('.key');
 allButtons.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
+    console.log(event);
     if (event.target.textContent.length < 2 && event.target.textContent !== ' ') {
       OtherInput(event.target.textContent);
     } else {
@@ -255,7 +256,7 @@ allButtons.forEach((item) => {
       } else if (item.className.split(' ')[1] === 'ArrowLeft') {
         ArrowLeft();
       } else if (item.className.split(' ')[1] === 'ArrowDown') {
-        ArrowDownv();
+        ArrowDown();
       } else if (item.className.split(' ')[1] === 'ArrowRight') {
         ArrowRight();
       } else if (item.className.split(' ')[1] === 'Enter') {
