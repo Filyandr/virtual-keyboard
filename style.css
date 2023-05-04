@@ -40,7 +40,7 @@ body {
     color: black;
     border-radius: 20px;
     border: 2px solid;
-    border-color: rgb(240, 139, 46);
+    border-color: rgb(255, 188, 126);
     outline: none;
     overflow:hidden;
 }
@@ -78,7 +78,7 @@ body {
     background: white;
     font-size: 16px;
     border: 1px solid rgb(240, 139, 46);
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     user-select: none;
     transition: border-radius 0.2s, background-color 0.2s;
@@ -92,13 +92,12 @@ body {
 
 .key:active {
     background-color: rgb(255, 147, 47);
-    border-radius: 5px;
-    color: black;
+    border-radius: 25px;
 }
 
 .active {
     background-color: rgb(255, 147, 47);
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .Backspace{

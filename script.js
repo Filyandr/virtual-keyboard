@@ -190,7 +190,7 @@ function ArrowLeft() {
   let text = textarea.value;
   let Del = text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
   textarea.value = Del;
-  resetCursor(textarea, currentPos + 1);
+  resetCursor(textarea, currentPos - 1);
 }
 
 function ArrowDown() {
@@ -255,7 +255,7 @@ allButtons.forEach((item) => {
       } else if (item.className.split(' ')[1] === 'ArrowLeft') {
         ArrowLeft();
       } else if (item.className.split(' ')[1] === 'ArrowDown') {
-        ArrowDownv();
+        ArrowDown();
       } else if (item.className.split(' ')[1] === 'ArrowRight') {
         ArrowRight();
       } else if (item.className.split(' ')[1] === 'Enter') {
